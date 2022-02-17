@@ -1,12 +1,9 @@
 ﻿using _0_FrameWork.Infrastructure;
 using ShopManagement.Application.Contracts.ProductCategory;
 using ShopManagement.Domain.ProductCategoryAgg;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ShopManagement.Infrastructure.EFCore.Repository
 {
@@ -26,7 +23,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 Id = x.Id,
                 Description = x.Description,
                 Name = x.Name,
-                KeyWords = x.KeyWords,
+                Keywords = x.Keywords,
                 MetaDescription = x.MetaDescription,
                 Picture = x.Picture,
                 PictureAlt = x.PictureAlt,
