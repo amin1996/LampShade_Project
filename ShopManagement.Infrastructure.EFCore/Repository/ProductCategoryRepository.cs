@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace ShopManagement.Infrastructure.EFCore.Repository
 {
-    public class ProductCategoryRepository :RepositoryBase<long,ProductCategory> ,IProductCategoryRepository
+    public class ProductCategoryRepository : RepositoryBase<long, ProductCategory>, IProductCategoryRepository
     {
         private readonly ShopContext _context;
 
@@ -31,6 +31,18 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 Slug = x.Slug,
             }).FirstOrDefault(x => x.Id == id);
         }
+
+        public List<ProductCategoryViewModel> GetProductCategories()
+        {
+            return _context.ProductCategories.Select(x => new ProductCategoryViewModel
+            {
+                Id = x.Id,
+                Name = x.Name
+
+            }).ToList();
+
+        }
+
         public List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)
         {
             var query = _context.ProductCategories.Select(x => new ProductCategoryViewModel()
@@ -41,10 +53,10 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 CreationDate = x.CreationDate.ToString()
             });
 
-            if(!string.IsNullOrWhiteSpace(searchModel.Name))
-                query=query.Where(x=>x.Name.Contains(searchModel.Name));
+            if (!string.IsNullOrWhiteSpace(searchModel.Name))
+                query = query.Where(x => x.Name.Contains(searchModel.Name));
 
-            return query.OrderByDescending(x=>x.Id).ToList();
+            return query.OrderByDescending(x => x.Id).ToList();
         }
     }
 }

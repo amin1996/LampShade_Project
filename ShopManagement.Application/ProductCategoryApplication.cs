@@ -17,9 +17,9 @@ namespace ShopManagement.Application
 
         public OperationResult Create(CreateProductCategory command)
         {
-            var operation=new OperationResult();
-            if (_productCategoryRepository.Exists(x=>x.Name==command.Name))
-                operation.Faild("امکان ثبت رکورد تکراری وجود ندارد لطفا مجدد تلاش کنید");
+            var operation = new OperationResult();
+            if (_productCategoryRepository.Exists(x => x.Name == command.Name))
+                operation.Faild(ApplicationMessages.DuplicatedRecord);
 
             var slug = command.Slug.Slugify();
             var productCategory = new ProductCategory(command.Name, command.Description, command.Picture, command.PictureAlt
@@ -33,14 +33,14 @@ namespace ShopManagement.Application
 
         public OperationResult Edit(EditProductCategory command)
         {
-            var operation=new OperationResult();
-            var productCategory=_productCategoryRepository.Get(command.Id);
+            var operation = new OperationResult();
+            var productCategory = _productCategoryRepository.Get(command.Id);
 
             if (productCategory == null)
-                return operation.Faild("رکورد با اطلاعات درخواست شده یافت نشد. لطفل مجدد تلاش کنید.");
+                return operation.Faild(ApplicationMessages.RecordNotFound);
 
-            if(_productCategoryRepository.Exists(x=>x.Name==command.Name && x.Id!=command.Id))
-                return operation.Faild("امکان ثبت رکورد تکراری وجود ندارد لطفا مجدد تلاش کنید");
+            if (_productCategoryRepository.Exists(x => x.Name == command.Name && x.Id != command.Id))
+                return operation.Faild(ApplicationMessages.DuplicatedRecord);
 
             var slug = command.Slug.Slugify();
             productCategory.Edit(command.Name, command.Description, command.Picture, command.PictureAlt
@@ -54,6 +54,11 @@ namespace ShopManagement.Application
         public EditProductCategory GetDetails(long id)
         {
             return _productCategoryRepository.GetDetails(id);
+        }
+
+        public List<ProductCategoryViewModel> GetProductCategories()
+        {
+            return _productCategoryRepository.GetProductCategories();
         }
 
         public List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)
