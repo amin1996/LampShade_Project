@@ -1,3 +1,4 @@
+using DiscountManagement.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,7 @@ namespace ServiceHost
         {
             var connectionString = Configuration.GetConnectionString("LampShadeDb");
             ShopManagementBootstrapper.Configure(services, connectionString);
+            DiscountManagementBootstrapper.configure(services, connectionString);
 
             services.AddRazorPages();
         }
