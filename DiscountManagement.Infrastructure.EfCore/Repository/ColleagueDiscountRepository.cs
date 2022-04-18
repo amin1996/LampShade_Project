@@ -27,6 +27,7 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
                 Id = x.Id,
                 DiscountRate = x.DiscountRate,
                 ProductId = x.ProductId,
+                
 
             }).FirstOrDefault(x => x.Id == id);
         }
@@ -40,6 +41,7 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
                 CreationDate = x.CreationDate.ToFarsi(),
                 DiscountRate = x.DiscountRate,
                 ProductId = x.ProductId,
+                IsRemoved = x.IsRemoved,
 
             });
 
