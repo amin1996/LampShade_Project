@@ -13,7 +13,7 @@ namespace DiscountManagement.Configuration
 {
     public class DiscountManagementBootstrapper
     {
-        public static void configure(IServiceCollection services , string connectionString)
+        public static void Configure(IServiceCollection services , string connectionString)
         {
             services.AddTransient<ICustomerDiscountApplication, CustomerDiscountApplication>();
             services.AddTransient<ICustomerDiscountRepository, CustomerDiscountRepository>();

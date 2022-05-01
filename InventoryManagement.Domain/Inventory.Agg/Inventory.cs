@@ -18,7 +18,7 @@ namespace InventoryManagement.Domain.Inventory.Agg
         {
             ProductId = productId;
             UnitPrice = unitPrice;
-            InStock = false;
+            InStock = true;
         }
 
         public void Edit(long productId, long unitPrice)
@@ -75,6 +75,7 @@ namespace InventoryManagement.Domain.Inventory.Agg
             Description = description;
             OrderId = orderId;
             InventoryId = inventoryId;
+            OperationDate= DateTime.Now;
         }
     }
 }

@@ -36,8 +36,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 PictureTitle = x.PictureTitle,
                 ShortDescription = x.ShortDescription,
                 Slug = x.Slug,
-                UnitPrice = x.UnitPrice
-
+                
             }).FirstOrDefault(x => x.Id == id);
         }
 
@@ -58,10 +57,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 Category = x.Category.Name,
                 CategoryId = x.CategoryId,
                 Name = x.Name,
-                UnitPrice = x.UnitPrice,
                 Code = x.Code,
                 Id = x.Id,
-                IsInStock = x.IsInStock,
                 Picture = x.Picture,
                 CreationDate = x.CreationDate.ToFarsi(),
             });
