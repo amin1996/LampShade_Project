@@ -37,7 +37,7 @@ namespace _01_LampShadeQuery.Query
                 PictureTitle = c.PictureTitle,
                 Slug = c.Slug,
 
-            }).ToList();
+            }).AsNoTracking().ToList();
         }
 
         public List<ProductCategoryQueryModel> GetProductCategoriesWithProducts()
@@ -56,7 +56,7 @@ namespace _01_LampShadeQuery.Query
                     Name = x.Name,
                     Products = MapProducts(x.Products)
 
-                }).ToList();
+                }).AsNoTracking().ToList();
 
             foreach (var category in categories)
             {
@@ -120,7 +120,7 @@ namespace _01_LampShadeQuery.Query
                     Keywords = x.Keywords,
                     Slug = x.Slug,
 
-                }).FirstOrDefault(x => x.Slug == slug);
+                }).AsNoTracking().FirstOrDefault(x => x.Slug == slug);
 
             foreach (var product in category.Products)
             {
