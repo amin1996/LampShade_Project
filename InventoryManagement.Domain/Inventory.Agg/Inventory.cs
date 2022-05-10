@@ -10,18 +10,18 @@ namespace InventoryManagement.Domain.Inventory.Agg
     public class Inventory : EntityBase
     {
         public long ProductId { get; private set; }
-        public long UnitPrice { get; private set; }
+        public double UnitPrice { get; private set; }
         public bool InStock { get; private set; }
         public List<InventoryOperation> Operations { get; private set; }
 
-        public Inventory(long productId, long unitPrice)
+        public Inventory(long productId, double unitPrice)
         {
             ProductId = productId;
             UnitPrice = unitPrice;
             InStock = true;
         }
 
-        public void Edit(long productId, long unitPrice)
+        public void Edit(long productId, double unitPrice)
         {
             ProductId = productId;
             UnitPrice = unitPrice;

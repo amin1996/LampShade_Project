@@ -11,7 +11,7 @@ namespace InventoryManagement.Application.Contract.Inventory
         public long ProductId { get;  set; }
 
         [Range(1, double.MaxValue, ErrorMessage = ValidationMessages.IsRequired)]
-        public long UnitPrice { get;  set; }
+        public double UnitPrice { get;  set; }
 
         public List<ProductViewModel> Products { get; set; }
     }

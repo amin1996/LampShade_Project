@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using _01_LampShadeQuery.Contracts.Product;
+using System.Collections.Generic;
 
 namespace _01_LampShadeQuery.Contracts.ProductCategory
 {
 	public interface IProductCategoryQuery
 	{
-        List<ProductCategoryQueryViewModel> GetProductCategories();
+		ProductCategoryQueryModel GetProductCategoryWithProductsBy(string slug);
+		List<ProductCategoryQueryModel> GetProductCategories();
+		List<ProductCategoryQueryModel> GetProductCategoriesWithProducts();
+
 	}
 }
