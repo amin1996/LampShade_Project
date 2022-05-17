@@ -1,3 +1,4 @@
+using _0_FrameWork.Application;
 using DiscountManagement.Configuration;
 using InventoryManagement.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Builder;
@@ -27,10 +28,13 @@ namespace ServiceHost
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration.GetConnectionString("LampShadeDb");
+
             ShopManagementBootstrapper.Configure(services, connectionString);
             DiscountManagementBootstrapper.Configure(services, connectionString);
             InventoryManagementBootstrapper.Configure(services,connectionString);
 
+
+            services.AddTransient<IFileUploader,FileUploader>();    
             services.AddRazorPages();
         }
 
