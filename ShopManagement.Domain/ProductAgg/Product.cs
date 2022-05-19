@@ -60,6 +60,6 @@ namespace ShopManagement.Domain.ProductAgg
             Slug = slug;
             Keywords = keywords;
             MetaDescription = metaDescription;
-        }
+        }  
     }
 }
