@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace _01_LampShadeQuery.Contracts.Product
 {
@@ -29,6 +25,7 @@ namespace _01_LampShadeQuery.Contracts.Product
         public string MetaDescription { get; set; }
         public bool IsInStock { get; set; }
         public List<ProductPictureQueryModel> Pictures { get; set; }
+        public List<CommentQueryModel> Comments { get; set; }
     }
 
     public class ProductPictureQueryModel
@@ -38,5 +35,13 @@ namespace _01_LampShadeQuery.Contracts.Product
         public string PictureAlt { get; set; }
         public string PictureTitle { get; set; }
         public bool IsRemoved { get; set; }
+    }
+
+    public class CommentQueryModel
+    {
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Message { get; set; }
     }
 }
