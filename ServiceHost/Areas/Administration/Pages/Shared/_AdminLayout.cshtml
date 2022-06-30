@@ -220,11 +220,22 @@
 
 	@RenderSection("Scripts",false);
 	<script>
-		$('.PersianDateInput').persianDatepicker({
-		
-		format: 'YYYY/MM/DD',
-		autoClose:true
+		$('.persianDateInput').persianDatepicker({
+
+			format: 'YYYY/MM/DD',
+			autoClose: true
 		});
 	</script>
+	<script src="https://cdn.tiny.cloud/1/6eqdbsa2n3s4j4bdsrtvchvkziuv9miu62zazv79hje3avgk/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+	<script>
+    tinymce.init({
+      selector: '#BodyContent',
+      plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+      toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+    });
+  </script>
 </body>
 </html>
