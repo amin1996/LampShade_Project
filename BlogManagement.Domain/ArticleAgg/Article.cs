@@ -38,7 +38,6 @@ namespace BlogManagement.Domain.ArticleAgg
             Keywords = keywords;
             MetaDescription = metaDescription;
             CanonicalAddress = canonicalAddress;
-
             CategoryId = categoryId;
         }
 
