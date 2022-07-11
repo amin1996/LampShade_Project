@@ -1,9 +1,9 @@
 ﻿using _0_Framework.Application;
 using _01_LampShadeQuery.Contracts.Product;
+using CommentManagement.Infrastructure.EfCore;
 using DiscountManagement.Infrastructure.EfCore;
 using InventoryManagement.Infrastructure.EfCore;
 using Microsoft.EntityFrameworkCore;
-using ShopManagement.Domain.CommentAgg;
 using ShopManagement.Domain.ProductPictureAgg;
 using ShopManagement.Infrastructure.EFCore;
 using System;
@@ -18,14 +18,16 @@ namespace _01_LampShadeQuery.Query
         private readonly ShopContext _context;
         private readonly InventoryContext _inventoryContext;
         private readonly DiscountContext _discountContext;
-        public ProductQuery(ShopContext shopcontext, InventoryContext inventoryContext, DiscountContext discountContext)
+        private readonly CommentContext _commentContext;
+        public ProductQuery(ShopContext shopcontext, InventoryContext inventoryContext, DiscountContext discountContext, CommentContext commentContext)
         {
             _context = shopcontext;
             _inventoryContext = inventoryContext;
             _discountContext = discountContext;
+            _commentContext = commentContext;
         }
 
-        public ProductQueryModel GetDetails(string slug)
+        public ProductQueryModel GetProductDetails(string slug)
         {
             var inventory = _inventoryContext.Inventory
                 .Select(x => new { x.ProductId, x.UnitPrice, x.InStock }).ToList();
@@ -37,7 +39,6 @@ namespace _01_LampShadeQuery.Query
             var product = _context.Products
                 .Include(x => x.Category)
                 .Include(x => x.ProductPictures)
-                .Include(x => x.Comments)
                 .Select(product => new ProductQueryModel
                 {
                     Id = product.Id,
@@ -54,7 +55,6 @@ namespace _01_LampShadeQuery.Query
                     MetaDescription = product.MetaDescription,
                     ShortDescription = product.ShortDescription,
                     Pictures = MapProductPictures(product.ProductPictures),
-                    Comments = MapComments(product.Comments),
                 }).FirstOrDefault(x => x.Slug == slug);
 
             if (product == null)
@@ -78,22 +78,23 @@ namespace _01_LampShadeQuery.Query
                 }
             }
 
-            return product;
-        }
-
-        private static List<CommentQueryModel> MapComments(List<Comment> comments)
-        {
-            return comments
+            product.Comments  = _commentContext.Comments
+                .Where(x => x.Type == CommentType.Product)
+                .Where(x => x.OwnerRecordId == product.Id)
                 .Where(x => !x.IsCanceled)
                 .Where(x => x.IsConfirmed)
                 .Select(x => new CommentQueryModel
                 {
                     Id = x.Id,
-                    Email = x.Email,
                     Name = x.Name,
-                    Message=x.Message,
-                    
-                }).OrderByDescending(x=>x.Id).ToList();
+                    Message = x.Message,
+                    CreationDate=x.CreationDate.ToFarsi(),
+
+                }).OrderByDescending(x => x.Id).ToList();
+
+          
+
+            return product;
         }
 
         private static List<ProductPictureQueryModel> MapProductPictures(List<ProductPicture> productPictures)
@@ -202,6 +203,7 @@ namespace _01_LampShadeQuery.Query
                     }
                 }
             }
+
             return products;
         }
     }

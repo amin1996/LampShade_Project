@@ -1,7 +1,9 @@
 ﻿@page "{Id}"
 @model ServiceHost.Pages.ProductModel
 @{
-	ViewData["Title"] = "صفحه ی محصول";
+	ViewData["Title"] = Model.Product.Name;
+	ViewData["Keywords"] = Model.Product.Keywords;
+	ViewData["metaDescription"] = Model.Product.MetaDescription;
 }
 <!--====================  breadcrumb area ====================-->
 <div class="breadcrumb-area section-space--half">
@@ -129,7 +131,7 @@
 										<p class="single-info">
 											<a asp-page="/ProductCategory" asp-route-id="@Model.Product.CategorySlug">@Model.Product.Category</a>
 										</p>
-										<h4 class="product-title">@Model.Product.Name</h4>
+										<h2 class="product-title">@Model.Product.Name</h2>
 										<div class="product-rating">
 											<span class="rating">
 												<i class="ion-android-star active"></i>
@@ -313,16 +315,16 @@
 													<div class="ratings-wrapper">
 														<div class="sin-ratings">
 															<div class="rating-author">
-														<h3>@comment.Name</h3>
-														@*<div class="rating-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<span>(5)</span>
-														</div>*@
-														</div>
+																<h3>@comment.Name</h3>
+																@*<div class="rating-star">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<span>(5)</span>
+															</div>*@
+															</div>
 															<p>
 																@comment.Message
 
@@ -349,8 +351,8 @@
 																<textarea name="message" id="message"
 																		  placeholder="نظر خود را بنویسید..."></textarea>
 															</div>
-															<input type="hidden" id="@Model.Product.Id" name="productId" />
-															<input type="hidden" id="@Model.Product.Slug" name="productSlug" />
+															<input type="hidden" value="@Model.Product.Id" name="OwnerRecordId" />
+															<input type="hidden" value="@Model.Product.Slug" name="productSlug" />
 
 															<div class="col-12">
 																<input value="ارسال" type="submit">

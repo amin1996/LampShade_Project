@@ -1,7 +1,9 @@
 ﻿@page "{Id}"
 @model ServiceHost.Pages.ProductCategoryModel
 @{
-	ViewData["Title"] = "گروه محصولات";
+	ViewData["Title"] = Model.ProductCategory.Name;
+	ViewData["Keywords"] = Model.ProductCategory.Keywords;
+	ViewData["metaDescription"] = Model.ProductCategory.MetaDescription;
 }
 <div class="breadcrumb-area section-space--half">
 	<div class="container wide">
@@ -11,8 +13,8 @@
 				<div class="breadcrumb-wrapper breadcrumb-bg">
 					<!--=======  breadcrumb content  =======-->
 					<div class="breadcrumb-content">
-						<h2 class="breadcrumb-content__title">@Model.ProductCategory.Name</h2>
-						<h3>@Model.ProductCategory.Description</h3>
+						<h1 class="breadcrumb-content__title">@Model.ProductCategory.Name</h1>
+						<h2>@Model.ProductCategory.Description</h2>
 						<ul class="breadcrumb-content__page-map">
 							<li><a asp-page="./Index">صفحه ی اصلی</a></li>
 							<li class="active">@Model.ProductCategory.Name</li>
@@ -79,7 +81,7 @@
 										{
 											<div class="col-12 col-lg-4 col-md-4 col-sm-6">
 												<!--=======  product grid view  =======-->
-											<div class="single-grid-product grid-view-product">
+												<div class="single-grid-product grid-view-product">
 													<div class="single-grid-product__image">
 														@if (product.HasDiscount)
 														{
@@ -95,7 +97,7 @@
 													<div class="single-grid-product__content">
 														<div class="single-grid-product__category-rating">
 															<span class="category">
-																<a href="/ProductCategory" asp-route-id ="@Model.ProductCategory.Slug">@Model.ProductCategory.Name</a>
+																<a href="/ProductCategory" asp-route-id="@Model.ProductCategory.Slug">@Model.ProductCategory.Name</a>
 															</span>
 															<span class="rating">
 																<i class="ion-android-star active"></i>
@@ -106,9 +108,9 @@
 															</span>
 														</div>
 
-														<h3 class="single-grid-product__title">
+														<h2 class="single-grid-product__title">
 															<a asp-page="/Product" asp-route-id="@product.Slug">@product.Name</a>
-														</h3>
+														</h2>
 														<p class="single-grid-product__price">
 															@if (product.HasDiscount)
 															{
@@ -124,7 +126,7 @@
 													</div>
 												</div>
 												<!--=======  End of product grid view  =======-->
-										</div>
+											</div>
 										}
 
 									</div>

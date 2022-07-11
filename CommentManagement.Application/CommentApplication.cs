@@ -1,13 +1,9 @@
 ﻿using _0_FrameWork.Application;
-using ShopManagement.Application.Contracts.Comment;
-using ShopManagement.Domain.CommentAgg;
-using System;
+using CommentManagement.Application.Contracts.Comment;
+using CommentManagement.Domain.CommentAgg;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ShopManagement.Application
+namespace CommentManagement.Application
 {
     public class CommentApplication : ICommentApplication
     {
@@ -22,7 +18,8 @@ namespace ShopManagement.Application
         {
             var operation = new OperationResult();
 
-            var comment = new Comment(command.Name,command.Email,command.Message,command.ProductId);
+            var comment = new Comment(command.Name, command.Email, command.Message,
+                command.ParentId,command.Type,command.Website,command.ParentId);
 
             _commentRepository.Create(comment);
 
@@ -39,7 +36,7 @@ namespace ShopManagement.Application
 
             var comment = _commentRepository.Get(id);
 
-            if(comment==null)
+            if (comment == null)
                 return operation.Faild(ApplicationMessages.RecordNotFound);
 
             comment.Cancel();
@@ -65,7 +62,7 @@ namespace ShopManagement.Application
 
         public List<CommentViewModel> Search(CommentSearchModel searchModel)
         {
-            return _commentRepository.Search(searchModel);  
+            return _commentRepository.Search(searchModel);
         }
     }
 }

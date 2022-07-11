@@ -5,7 +5,18 @@
 
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Lampshapde Store</title>
+
+	@if (ViewData["Title"] != null)
+	{
+		<title>@ViewData["Title"]- فروشگاه لوازم دکوراسیون</title>
+	}
+	else
+	{
+		<title>فروشگاه لوازم دکوراسیون</title>
+	}
+
+	<meta name="keywords" content="@ViewData["keywords"]" />
+	<meta name="description" content="@ViewData["metaDescription"]" />
 	<!-- Vendor CSS -->
 	<link href="~/Theme/assets/css/vendors.css" rel="stylesheet">
 	<!-- Main CSS -->
@@ -19,7 +30,6 @@
 	<!--====================  header area ====================-->
 	@await Component.InvokeAsync("Menu")
 	<!--====================  End of header area  ====================-->
-
 	@RenderBody()
 
 	<!--====================  footer area ====================-->
