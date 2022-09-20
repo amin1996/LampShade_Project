@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Account\**" />
+    <EmbeddedResource Remove="Account\**" />
+    <None Remove="Account\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CommentManagement.Application.Contracts\CommentManagement.Application.Contracts.csproj" />
     <ProjectReference Include="..\CommentManagement.Domain\CommentManagement.Domain.csproj" />
   </ItemGroup>

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "BlogManagement.Infrastructure.EfCore": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:7129;http://localhost:7136"
+    }
+  }
+}

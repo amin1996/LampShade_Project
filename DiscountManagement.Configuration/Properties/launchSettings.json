@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "DiscountManagement.Configuration": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:7123;http://localhost:7137"
+    }
+  }
+}

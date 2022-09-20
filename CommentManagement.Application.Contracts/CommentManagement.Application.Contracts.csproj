@@ -1,8 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Account\**" />
+    <EmbeddedResource Remove="Account\**" />
+    <None Remove="Account\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\0_FrameWork\0_FrameWork.csproj" />
